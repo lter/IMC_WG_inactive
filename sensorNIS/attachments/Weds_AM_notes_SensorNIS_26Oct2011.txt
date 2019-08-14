@@ -1,0 +1,377 @@
+SensorNIS Weds 26 Oct 2011	AM session
+---------------------------------------------
+
+Technology to manage streaming sensor data
+
+Michael Nekrosov - Data Turbine
+
+Event detection on real-time data.
+
+DataTurbine is middlware for streaming real-time data.
+Sits in processing chain close to data source.
+Makes data visible to applications in black box way.
+
+supports heterogenous data sources and presents in uniform interface.
+
+OSDT can run on a small device such as an Android or even a usb gumstick.
+
+caches data locally then mirrors to DT at a data center.
+
+ESPER
+Event Stream Processing and Event Correlation engine
+
+free version of proprietary sw
+
+"like an upside-down database"
+
+Set up a query then run data thru it.
+
+Event triggers an email for a data event such as flood warning 
+
+Taiwan Forestry Reserach Inst.
+	met, audio, video
+	automated bee count
+Racha Yai Coral Reef (Thailand)
+	ctd, video, met
+	CREON - Coral Reef Enviorn Obs Netwk
+Bandon Bay Estuary (Thailand)
+	met, hydrological
+	early warning system for marine aquaculture of flooding
+
+Putting ESPER together with DataTurbine
+
+sensors -> OSDT -> ESPER -> OSDT -> apps
+
+OSDT - Open Source Data Turbine
+
+RDV - realtime data viewer, runs on desktop
+	plots data channels
+
+Events defined by ranges, statistical tests
+
+How to set up data turbine?
+	Install file works well on Windows or Linux
+	All you really need is rbnb.jar
+	batch file that starts up the server
+	specify an archive, a cache size
+
+	cache size is how much is buffered in memory
+	archive size is how much is written to disk
+
+	Not meant to be used as an archive.
+	archive determines how much data is buffered
+	cache size is how much data gets fast access
+
+	1st start a DT server
+	Then start up onramps that load the data, then offramps that move the data out.
+	
+	In Moorea, serial-to-internet, then internet-to-serial
+		(Only because Campbell Datalogger and SeaBird expect serial input)
+
+Kristin -
+	where to find onramps
+Michael -
+	look in utilities folder.
+	common ones are written in jython 
+	Ask Tony Fountain or Peter Shin
+
+	We use loggernet because Campbell changes their protocol.
+
+Don -
+	what would drive why I would want to set up data turbine at my site?
+	Custom solutions are simpler.  
+Michael -
+	a way to standardize data acquisition and data stream
+	When you have DT set up, you can extend from just looking at a file 6 months ago to what just came in.
+	Can be alerted to events to step up sampling rates.
+
+	If data is being streamed in portable, well-standardized way then can merge data streams.
+	ie show data from Moorea, Australia, Thailand together.
+	
+JohnP -
+	DT deals with ascii files, images, sound, wider array of data types.
+	
+Lindsey -
+	so if wanted to set up a northeast sensor network
+	if we all run DT, each provide data to DT, then could all overlay and look at simultaneously?
+
+Michael -
+	yes.
+	As long as each site provides their onramp
+	Can look up which data channels you want.
+	
+	If any one site goes down, if config correctly, it will come back up, read what is missing and pull it thru
+
+Emery -
+	metadata?
+
+Michael -
+	any channel that starts with an _ does not show in RDV
+	There are hidden channels alongside the regular channels
+	I put the metadata in hidden channels.  I dont use EML.
+	you can put the metadata in any text, including EML.
+	You have a history of that metadata so can change the metadata at a point in time to apply to current data.
+	Request the "newest" to get the metadata corresponding to latest data.
+
+Ethan -
+	about ESPER,
+	how extendable and how sophisticated?
+	Can I extend it?
+
+Michael -
+	you can extend it, can have any operation you want on it.
+	A running average is better to do in ESPER than a rDB.
+	A year's worth of analysis for each new data point is faster in ESPER.
+	QA/QC can be plugged into ESPER
+	it can execute any java function
+
+Don -
+	what about support?  seem daunting.
+	Are folks accessible to talk about this?
+	There are 3 people at UCSD who handle development and support.
+	The new grant includes funds for documentation.
+	If interest in the community then more interest in docs.
+	
+Emery -
+	if I want an esper query do I need to write java?
+
+Michale -
+	esper syntax is SQL. You can modify a query while it is running.
+
+-----------------------------------
+Talk 2
+Jeff Taylor - NEON
+
+NEON data acquisition, data management, and qa/qc
+
+Overview of challenges
+	14K sensors
+	45 Tb data/year
+	584 level 1 data products
+	95 measuremetn types
+	70 different ...
+
+Spatial Scaling Strategy
+	graphic of time versus space versus measurement domain
+	different measureent systems
+		map onto space and timescales in different ways
+
+	ie aircraft can do wide spatial scales but only flying once or twice per year
+
+Data Management Approach
+	Data Levels 0 to 4
+	where 0 is raw
+	calibrated is level 1, in SI units, basic qa/qc (584 of these)
+		prob what this community is interested in
+	higher levels include gap-filling, spatially rectified
+	Derived variables are level 4 (117 of these)
+
+Examples
+	Wind, CO2 conc -> flux
+	Cameras - phenology
+	
+Information/Hardware Flow
+	how one sensor gets managed
+	flow chart
+	sensor goes to calib lab. 
+	tag on sensor labels calib metadata.  
+	Metadata stored on chip attached to sensor.
+	The sensor sends its info back to HQ so we know where it is.
+
+	Sensor integration, assembly
+	
+	Sites themselves have metadata such as lat,lon, elevation.
+
+	Once tested, goes into operation.
+
+	RTU - remote terminal unit
+	onboard memory. In case communications go down, stores onboard for some time. 8G now
+	RTU sends to Location Controller, LC, a server.
+	For sensors that require local command and control, ie a heater
+		do not want to wait for data to be seen at HQ
+		can activate controls locally, automatically
+		prevents instrument downtime
+
+	2 stages of QA/QC
+	goes into provisional database
+	then eyes-on
+	then published into accessible database
+
+GRAPE 
+	Data Acquisition System
+	Just as good as a Campbell Data Logger
+	Nothing patentable.
+	More durable
+	6 connectors for serial ports
+	powered over ethernet 40 watts 
+	all sw is completely open source
+	
+NEON Cyber Infrastructure
+	data acquisition
+	data access
+	data processing
+	problem ticket management
+
+	data can come in a multitude of ways, including human hand-written
+	data center in Boulder, CO
+	raw database is locked down, can never change, no acess to it.
+
+	external users can acess data via several interfaces
+	catalog of data produts
+	stakeholders vary from K-12 school children to NASA policy-maker lobbying congress
+
+	ATBD - theoretical basis documents, transparency, available 
+
+	Science Operations Mangement - OSS
+		resolution, trouble tickets
+
+Portals
+	data out for different purposes
+
+
+Data Management
+	boxes and arrows
+	metadata and asset information stored in XML files stored on chips
+	recognise each other, passed along with data stream
+	goes thru transitions,... to processed data
+	cal/val - calibration and validation
+	data streams merge to form higher level data products
+		such as land use model
+
+Data Model Observer Hierarchy
+	Compare to other hierarchy of USGS or department of interior
+
+
+Measurement Stream
+	data streams in as a function of time
+	each sensor has a position
+	a sensor is replaced at some point; has a new asset number but measurement stream comes in at same position.
+	if replaced by a whole new sensor for new measurement, even if same position, it gets a new stream.
+
+	all plug-and-play.  all metadata automatic.
+	How it is encoded is by IP address, location controller.
+
+Quality Control
+	looked at six other programs, how they do QC
+	All have some in-house calibration
+	Everyone has dynamic SOPs. Different in Alaska than Puerto Rico.
+	Almost all groups have an eyes-on step in QC.  "data verification"
+	Last step is to provide for user feedback.
+
+Data Flow
+	data has to pass thru 5 process teams before user can view it.
+	How to track down a problem?
+	Problem tracking box on flow chart will be a beast.
+	Eventually gets to provisional data, eyes-on, then publish.
+	Will publish all data within 45 days of acquisition.
+
+Automated QC
+	before Level-1
+Data Verification
+	using toolkits
+
+all goes into cumulative quality reports that go along with the data.
+
+FIU Traceability
+	how low level data products combine togthr to form level 4 products which answer the Grand Questions
+	Some are complex such as Continental scale NPP
+
+Questions
+
+? difference btwn provisional and published data
+Ans: usually no difference
+
+Level 2 availble in 2 months perhaps
+
+? where will you publish the data and will it be searchable
+Ans: will publish in Boulder.  
+	digital identifiers for each dataset
+	centralized, accessible online place with easy access
+	
+Corinna -
+	to version, must think of data in chunks.
+	A DOI points to a static object
+Ans:
+	meeting with ISO and ANSI to devel the DOI for data. dont know details
+	NEON board of directors are in favor of using DOIs
+
+Emery - will public metadata be in EML
+Ans: 	dont know
+
+? how will level 4 be deritve?
+Ans:	have a team. working with NCAR, land use simulation model, an area of active reserach
+
+Corinna -
+	fill in on box between raw and published .. the automated QA/QC
+	In slide "Sensor Data: QA/QC"
+
+Ans:	plausiblity tests: 7 tests
+		gap checks
+		range test
+		sigma test, the variance
+		delta test  
+		null check - checking for single missing data point
+		step test - is a spike test
+		(see poster)
+	Also we want an automated time series de-spiking routine, how to fill in.
+
+	That is all automated, flagged.
+	Then goes into Data Verification, relies on visualization, eyes-on, looking at several graphs together.
+
+	integrated uncertainty analysis
+	error estimation.  every measurement has an error.
+
+?	what will uncert anal be?
+ans:	a number, such as 0.001 degree celcius.
+
+?	timelines.. when something changes rapidly, one uncertainty is how change is tracked
+Ans:	statsitical, sensor to sensro dependent
+
+John Cambell - provenance?
+		Will you gap-fill later?
+Ans:	all data producst will carry record of what QC/QA was done to them
+	Later may reprocess from raw data if procedures improve
+	Level2 and 3 will have gaps filled
+
+JC - processing always changing
+Ans:	will be new version release; will reprocess all data to new version
+
+
+	
+-----------------------------
+Discussion Groups - the easy part is over!
+----------------------------------------------
+
+Data Flow
+	collection -> streaming-> qa qc -> archiving -> access level 1
+
+Focus this afternoon is on the QA/QC part.
+
+Focus on the software, technology for doing this work.
+
+(1) share success stories.
+	what systems produce good quality data.
+	find commonalities
+
+(2) greatest needs?
+	to collect data from sensor networks
+	software or hardware
+	recommendations
+	edu resources
+	other needs expected
+
+(3) List of actions to meet those needs
+	Should vs. Must
+	Best Practices reccommendataions: distinguish should vs must
+
+Break into 3 groups, each with same charge.
+On Thursday will get reports from each group.
+
+Group 1 in conf room
+2 in woodshop
+3 in dirt lab
+
+
+
+
+

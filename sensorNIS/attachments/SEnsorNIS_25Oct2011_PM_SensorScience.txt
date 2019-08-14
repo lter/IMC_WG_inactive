@@ -1,0 +1,253 @@
+25 Oct 2011 Afternoon: 
+
+Sensor Science
+---------------------------------------------------------------------------
+
+Science drives technology to deliver the science.
+In some ways the technology drives the science.
+
+We're building NEON yet we still have questions how we will use that system.
+
+Eyes open one day per year.
+--------------------------------------
+
+talk 1: Emery Boose, Harvard Forest
+
+Provenance for Sensor Networks
+
+the history or lineage of a thing.
+Look into future, anticpate problems that may arise as sensor networks become more complex.
+
+Analytic Web Project.
+	Computer science colleagues.  How to make science analyses reproduceable.
+	Keep track of what was done.
+	
+Sensor Data Processing
+	generic sensor network:
+		sensor -> logger -> computer -> server
+	linear processor
+	divide into its sub-steps
+	data values and actions on those
+	
+	loggers are programmed to aggregate measurements
+	may apply a QC routine
+	PC may fill gaps
+
+	annotations
+	narrative in methods section in publication
+	flags in data tables
+
+automatd data collection
+QC sometimes automated
+
+as senosr networks grow, will become impossilbe to do this automatically
+
+lots of avenues to supply missing data from other sources.
+The more info we collect, the lower impact of failed sensor
+but greater impact on analytical system.
+
+Sensor Data Processing
+	example: sensor drift
+	post processing can improve data product
+	get series of dataset revisions over time
+	at some point, exceed ability of our metadata to capture this complexity
+
+Proces Definition Graph
+	tree of steps - LittleJill from Lerner et al. 2011
+	developed at HFR
+	template for what could happen as a process executes
+	kind of like Kepler, a workflow
+	supports execution of the process
+	may support rigorous analysis of execution pathways to validate the type of statistics
+
+Data Derivation Graph
+	audit trail of a single execution of th e process (what did happen)
+	Provides complete derivation history for data products (provenance)
+	Diagrams differ for each case running the same process
+	Control flow of complex process
+	How to store and optimize this information, query and visualize.
+
+Provenance Metadata Standards
+	Kepler
+	Little JIL
+	Taerna
+
+	users may want to combine more than one: Workflow interoperability
+	exchange data
+	exchange provenance metadata
+	
+
+Research Questions
+	What infor needs to be captured to fully describe a process and its execution?
+
+	What are effective ways to store, optimize, query, and visualize provenance metadat?
+
+	Can we develop provenance metadata standards to suport interoperability?
+
+Question:
+	What about storing gap filling parameters as agents in workflows?
+	
+Emery:
+	that provides template.  But would want to know exact params that went into script.
+
+-------------------------------
+talk 2
+Dan Dickinson - Florida Coastal Everglades
+
+Long-Term Acoustical and Meteorological Monitoring of the Florida Everglades
+School of Music
+
+began with artistic standpoint.  long-term audio files in everglades to use in music composition.
+Realized we could attempt correlations between audio and other environmental data.
+
+Cricket as Thermomenter 1897
+
+Goals:
+	high-quality, long-term audio for about 1 year
+	correlated environmental data
+	near-real-time internet access
+	automated extraction of interesting events
+	self-contained, cost-effective, low-maintenance
+
+gladesBox - HD Soundscape Recording
+
+architecture
+	fitPC - PC size of a hand, linux
+	USB, internet, monitor connection
+	2 Tb drive (1 year is 8.5 Tb)
+	solar powered with boat battery
+
+	time-stamped into 1-minute files
+	sent via zigby radio each minute
+
+	plan to receive at nearly site with internet access
+
+Analysis
+	audio-novelty algorithm
+	pick features to extract
+	output is a novelty curve
+	RMS and spectral sensoid
+
+	this detects airplaines and dogs
+
+Optimization
+	GPU-based acceleration
+	NVIDIA Tesla Supercomputer 170x speedup over sequential implementation
+	Novelty of novelty for multi-day sound files
+
+Status
+	2010 pilot deployment in Taylor Slough
+	deploy antenna on tower at Beard Research STation
+	Stream data every minute to nearby receiver to make available on the internet
+
+Future
+	expand microphone array
+	smaller form factor
+	multiple sites
+	artistic goals
+	correlation of audio and meteorological data
+	online tools for accessing data
+Questions
+
+Pulling anomalies, novelty, out of data
+
+Surprize analogy
+
+-------------------------------
+3rd talk
+Lindsey Rustad - Syntesis of survey results and NERC regional examples
+
+
+62 respondents
+45 research sites/groups
+EFR, LTER, Other
+
+survey answers are aggregated as one per site
+
+Climate sensors
+	35 sites air temperature
+	most sites did met measurements
+	
+Aquatic sensors
+	28 water temperature
+	28 water flow
+	20 specific conductance
+	14 turbidity
+	14 ph
+..
+
+Terrestrial
+	25 soil temperature
+	23 soil moisture
+	16 water table
+	9 soil respiration
+...
+	3 acoustical
+
+Existing WSNs?
+	62% yes
+	7% uin process
+	9% planned
+	others just here to learn
+
+Barriers
+	financial 20
+	trained personnel 17
+	other 15
+	programming 13
+	hardware 10
+	software 9
+
+we now have "candle" programs but dont have off-the-shelf progs we ar comfy useing.
+trying to write from ground up
+
+hw/sw - know which to use. where to start
+
+Top Barriesrs Explained
+
+10 finances
+7 remote access
+6 lack of expertise
+3 complex terrain - line of sight
+3 inadequate power
+3 inadequate internet access
+3 not enough time
+
+wireless networks help us overcome remote access but in reality we need access to them
+
+Some of those barriers we can target and overcome, ie sharing expertise.
+
+How are WSN's Being Used Now
+	"Measure adn monitor climate change, hydrologic cycle, carbon cycling, nutrient fluxes, soil respiration, and NEE."
+	NEE = ?
+
+	"... determine drives of ecosytem cahnge and responses... episodic events"
+
+	"forecast ... flood warnings"
+
+	"anticpate ecosytem shyifts from the *variance* in high-resolution data"
+
+	"... public outreach"
+
+	"...primary background for al most all sci questions"
+
+How COULD WSN be sued?
+
+	"dramatically improve models for carbon flux and UV attenuation and lake response to climate change"
+	"... field to remote sensing... daily/seasonal variation..."
+	"... identify environmental drivers of ... phenologies,.."
+	"... plant controls onstream hydrologic response..."  a basic ecology question
+	" precip affect lake transparency... predict long-term from short-term events"
+
+Dream of?
+	"understand forest metaboilism and glacial recession"
+	~ acoustical to look at pop and dispersal of endemic species
+	~ pathogen sensor... predict health and saftey
+	monitor indicator bacteria in real time
+	climate change affect water balance
+
+(just get those from slides - bad notes!)
+
+----------------------------------------------------------------------------------
+
+

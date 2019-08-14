@@ -1,0 +1,459 @@
+Weds afternoon talks
+
+talk 1
+Derik Barseghian - Kepler Sensor Platform
+
+create workfslows for 
+	visualization
+	analysis
+
+Kepler Sensor P
+	tools for monitoring,
+ controlling
+	visualization, anal, archive,
+
+
+REAP Terrestrial Use case
+
+explore impact of abiotic factors on plant population
+
+met station in N. Calif
+	tried to buy typical hardware
+	the usual suspects for sensors
+	
+co-located at a NutNet Site
+	treatment plots
+	instrumented some plots
+		light sensors on ground
+	biomass acum est by light reaching ground
+
+KSP Architecture
+	some are external systems
+	3 categories:
+	field
+	desktop
+	server
+
+SPAN from ISI at USC running on the low-power PC
+	can remove loggernet from the picture
+
+Data Turbine buffers the data streams
+
+Kepler to schedule jobs
+	Scheduler web server
+
+Metacat - an archive server to house data pkgs
+		typically described in EML
+
+Desktop Components:
+	tap into realtime data stream
+	deploy sensors
+	access data from OSDT
+	archive data
+	schedule jobs
+
+Examle Workflow:
+	calculate growing degree days
+	data turbine to access met data
+	simple calculations
+	plot data
+
+The actors are written in R, encapsulate little R scripts
+could also have a Matlab actor here
+Tie together scipts in a workflow
+
+Quality Control workflow example
+	took investigator's R scripts, hard-coded and buggy
+	encapsulated that into a workflow
+	broke into manageable pieces
+	composite actors contain other actors
+
+	re-wrote those scripts as a Kepler workflow
+	cleans the light data
+	makes QC checks
+	output dataset
+	compares two lightbars, threshold checking
+
+	read cleaned data back in, fit to a regression model
+	generates plot
+	outputs a file
+
+Features added to Kepler to manage your sensor network
+
+SPAN assumes your data stream is accessible by IP
+
+SPAN runs on a gumstix
+
+view in real time.  
+	color codes to show status (green = up and running)
+	latest data point and time stamp
+	input ports, output ports
+
+can draw pictures to show context
+	show useful info describing deployment
+
+right-click on an actor to see options
+	dialog for configuation
+	change sampling period
+	can export a site layout as kml
+
+right-click on data logger
+	see program running
+	next: modify and upload program to your data logger (for power users)
+
+connect output port to other actors
+	This is an example alerting workflow.
+	Let it always run.
+	If battery voltage is too low, sends email.
+	
+The output of a sensor can control its sampling rate.
+	ie high sampling rate for detected event
+
+Makes it simple to see quick look of data readings with plots
+	Drag something into plotter and plot is shown
+
+Archival and Scheduling
+	Schedule workflows for periodic, remote, headless execution
+	Chunk data into time interval
+	Describe with EML, embedded SensorML
+	Submits it to Metacat archive
+
+Tools -> Workflow -> Scheduler
+	Choose start, end time
+	Where you want it to run
+	Result destination
+
+Once you put data into Metacat, want to get them out again of course
+
+Search for data,
+	results displayed
+	select one to view
+	see it from inside Kepler
+
+Other ways to access datasets from Metacat
+	Such as LNO Portal or Morpho
+
+Archived data vs Stream
+	Can use archived data sets in conjunction with streaming data.
+
+Report Design, Report Viewer
+	drag components onto report design
+	"tokens"
+	annotate, add static images from disk
+	Save to file pdf
+
+Workflow Run Manager
+	Built-in, similar to web browser
+	see past workflow runs
+	Versions of workflows searchable by tag or date
+	Can archive workflow runs to share with other users.
+
+Local
+	Can browse remote job results on a server
+
+Kepler does not have to run workflows locally.
+
+Questions
+
+Ethan - opportunity to do parallel computation.
+	
+Ans - not that advanced.  Do have distributed arch built in but not cores.
+
+Don - form to change sensor. Could be used to document metadata.
+	What happens to that form?  Can its content be managed?
+Ans - That form doesnt use SensorML.
+	Metadata from SPAN server, where manually described
+	Timestamp for change in workflow, next time execute...
+	Any little change to the metadata should be saved as a version.
+	The provenance framework built on top of Kepler, if turned on, will record what was done.
+	Gets recorded in provenance database.
+	UC Davis working on that.
+
+Lindsey -
+	arrow back to sensor. Can you make them smart sensors?
+Ans - yes exactly.  A measurement can trigger change in sensor settings.
+	Providing they are "smart sensors".
+
+----------------------------------------
+talk 2
+Wade Sheldon - GCE LTER Matlab Data Toolbox
+
+in 2000 joined LTER network.  Survey of sw in use at that time for QC.
+Ready-to-use not found to level we wanted to automate.
+Group experience is in Matlab so built this Toolbox.
+Sucessful so hardened it and released as opensource.
+
+How we handle QC processing end-to-end and how to leverage for realtiem sensor data.
+
+Emerging challenge.
+Traditional techniques do not scale.
+QC can be limiting factor in releasing to users.
+
+Formalized QC procedures.
+Generalized approach, applicable to wide classes of data.
+
+Dynamic rule-based QC.
+
+Framework:
+	Tabular data model (designed to support QC)
+	Softwre for QC and qulifier flags
+	Softwre for QC-aware data analysis, synthesis
+
+Data Model
+	Any size numeric and text data
+	Contains metadata
+	Supports QC rules for each attrib in dataset
+	Flags
+	Captures history of processing
+
+GCE Data Structure
+	(see slide)
+
+flag arrays shadow data values throught data operations.
+
+How To Use
+
+	fully automatic a prior rules to flag values
+	and
+	manual visual tool to flag values
+
+	can revise qualifier flags
+
+	want to avoid flagging unusual but valuable values
+
+	transparent mgmt of flags
+
+Rules-based assignmentof flags
+	single-value
+	or refer to set of values
+
+	rules can be pre-defined in templates
+
+Rule Definitions
+	syntax: logical expression and code to assign
+	evaluate to T/F
+	codes are alphanumeric
+	example:
+		x<0='T';x>37='Q'
+	use x as an alias for the column value
+
+	consistency checks
+		compare related columns
+		example: sum of cover types should not add to over 100%
+
+	outlier detection
+		statistical tests compare value to mean of column within n sigma
+
+	condition checks
+		salinity in mooring in field, data values not recorded at low tide
+			or when battery too low.
+		Flag x value if y is too low.
+
+Categorical coded information
+	should be members of controlled vocabulary set
+	Set-based functions
+	Can be explicit in rule
+	or pointer to file or web service.
+
+Some checks not simple
+	Pattern checks
+	Deviations in patterns
+		Step, spike
+	Look at change in moving window. %change or N sigma
+	ie air temp change more than 5 degrees in time window
+
+	Look for not-seen, expected shifts
+		ie "stuck" sensor
+		look for values that DONT change within a window
+	ie fouled sensor (algae growth)
+
+Some rules are based on some derived properties
+	Convert raw data to product, then compare to expected
+
+Subtle conditions
+	rules applied sometimes but not othertimes
+	ie Storm front
+		air temp change rule not apply when raining
+
+specialized code can be "dropped in".
+
+Example: Sonde data
+	detected fouling
+	clip garbage data at end, during boat ride after retrieve instrument
+
+	Toolbox identified lack-of-change periods as flagged data
+		compared values to depth to disqualify tail end data
+
+	Can visualize QC in plots
+
+Form-based Rule Editing Tool
+
+First box is overview of columns in a dataset
+	buttons to launch processes
+	Can see QC rules there,
+		open GUI to build rules
+
+	Metadata-based software, used for all dialogs
+	drop-down menus
+	function browser
+	Sets up a template
+
+Interactive QC Analysis and Revision
+
+	data plot tools to visualize flags
+	use mouse to identify values to flag
+	can see spuriously-assigned flag.  visible on plot
+
+	right-click to assign
+	left-click to erase
+
+	Annotate reasons in text box
+
+There are GUI for all major operations of the Toolbox.
+
+Can be called as a workflow from the command line.
+
+Can lock and unlock the rules.
+
+Documentation of QC Steps.  Automatically journaled.
+	Narrative with datestamps.
+	Useful info for data end users to see what changed.
+
+How to Use that Info
+
+	End user loads data product but doesnt know how to load flag meaning
+	
+	Qualified values can be filtered out, converted to null
+	Stats about missing or qualified values
+
+	color-codes cells to visualize where flagged values are
+
+	statistical summaries can be generated w and w/o flaggd values to see sensitivity
+
+	Can put code defintion into text column, to meet outside standards.
+
+QC-Aware Data Synthesis
+	Need to know completeness of primary data.
+	What proportion of original values were flagged or missing?
+	Those metrics are auto captured and shown in columns.
+
+	Can carry qc forward into result dataset.
+
+Suitability for Real-Time Sensor Data
+
+	Scales well.
+	Matlab is enterprise-class sw. Very efficient for large datasets.
+	2Gb datasets not a problem on small PC.
+	
+	Can run on network or high-end workstation. No limit.
+
+	Built on a command-line API.
+	Scriptable and modular.
+	Can string together commands in timed batch.
+	Can harvest data on any schedule you want to implement.
+
+	Generalized protocols.
+		data from csv, database, various formats, NOAA, USGS native formats
+
+	Can harvest from datalogger to archive in one step.
+	Have been running that for years.
+
+Implementation Scenarios
+
+	End-to-end processing for scientists and grad students themselves.
+	Interactive tools for templates.
+	Desktop tool for end users
+
+	Data pre-processing.
+	Can use this early in workflow.
+
+	Working on connecting directly to data turbine.
+
+	Grab data, do QC rules, make decisions.
+	Push processed files directly into a database.
+
+	Looking for test cases for workflow.
+	Modular technology used in Data Toolbox may be useful to Kepler.
+
+Fine Print
+	requires Matlab.  Not free.  Licensed source. hundreds $
+	
+	Well documented in general.
+		Training, tutorials missing.  Will develop winter 2011-2012
+
+	Was unfunded outreach project.
+
+	Fully cross-platform.  Cross-version. Windows/Mac/Linux
+
+	Over 3000 people have downloaded this sw.  Feedback responded.
+
+	In subversion repo.  Regular builds.  Can wrap and redistribute.
+
+Questions
+
+Jim - the scientists who use it are Matlab users?
+Answer  - yes some already knew Matlab.  Also quick for undergrad to learn.
+	Often they use it as part of a broader workflow.
+
+? - support is limited to outreach
+Ans - not funded by NSF to devel or support sw.
+	Decided to promote it as tool.  Got periodic supplemental funding for specific upgrades.
+	Would benifit now to put in proposal for SW grant.
+	May be some funded activities around this but not funded directly.
+
+Ethan - moving window... want to do a delta check
+Ans - now, no.  Would be easy to add.  Simple extension to do.
+
+Ethan - rules prop fwd to use in second set of rules
+Ans -	When sumarize that dataset ie daily basis, can flag based on how many flagged values there were in the primary dataset.
+	Summarizing the flags as you summarize the data.
+	
+Ethan - if 2 rules: exclude and aggregate
+Ans -	Rules just assign flags; exclusion would be separate step.
+	Each is standalone data object.
+	Can strip values and reassign.  Can keep chain of data objects along the way.
+	
+? - Octave
+Ans - Octave supports only the basic operations of matlab.  No GUI.
+	Toolbox relies on higher support.
+	Some low-level functions could be used in Octave.
+
+--------------------------------------------
+	GROUP DISCUSSION
+--------------------------------------------
+
+Collection
+Streaming
+QAQC
+Archiving
+Access Level 1
+
+Next:  The QAQC Part
+
+Suggested Topics:
+	QC Level-1
+		what are the basic procedures we would do to Streaming Data
+		rule based approaches
+		7 from NEON
+		range checking
+
+	QC Level-2
+		Gap filling and flagging
+		
+
+	Data Qualifiers
+		What is a minimum set of flags to use?
+
+	Data Documentation
+		Communicate to user what has been done to that dataset
+		Where do we put that info
+			with the data, in the data table?
+			in separate metadata or text file?
+		What should be included?
+
+------------------------------------------------
+
+3 to 5pm.
+	
+
+

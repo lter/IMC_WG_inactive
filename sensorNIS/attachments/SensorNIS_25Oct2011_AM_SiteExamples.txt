@@ -1,0 +1,1079 @@
+Notes 25 Oct 2011 SensorNIS
+--------------------------------------------------
+
+Lindsey Rustad welcome 8am.
+
+NERC + LTER
+70 people registered shows need and interest.
+
+New Hampshire white mountains.
+
+Wireless Sensor Networks (WSNs) "Smart Forests" for the 21st Century.
+
+spatially distributed autonomous sensors to monitor physical environmental conditions and to cooperatively pass teir data through the network to a main locatin.
+
+applications:
+	physical
+	chemical
+	acoustical
+	optical
+
+new: ion-specific electrodes to measure chemical properties
+newer: beyond physical sensors
+
+Societal Values
+	Early Detection - acute and environmental change
+				
+	Education & Outreach - kids have more info in ipod than on a researcher's laptop
+		communicate in same language
+		retrievable
+
+Goals
+	NERC Env Sensor group.  North East Res? C?
+		new working group evaluating use of env sensors in this region
+		who is doing what where
+		deliver high quality data to end users
+		how we can collaborate to pool science accross sites
+
+	LTER SensorNIS - Network INformation System
+		share expertise
+		devel common protocols for QA/QC
+		deliver data to NIS
+
+Possible Products
+
+NERC - 
+	web clearing house for WSN information
+	regional WSN for early detection of environmental change
+
+SensorNIS -
+	white paper Best Practices for managing and providing high quality streaming data through the LTER NIS
+
+Mutual -
+	manuscript: streaming QA/QC for near realtime WSN data
+
+Who Are We?
+	Eclectic group
+	Info Mgrs
+	University scientists
+	Support Staff
+	students
+	Agency Scientists
+74 participants
+45 sites
+12 of the 80 forest service experimental sites
+18 LTERs
+16 other sites
+
+Agenda overview (see agenda)
+
+Introductions.
+
+--------------------
+1st talk:  Jamie Shanley (sched 9:15 but is 9:30)
+
+Pat McHale Huntington Fores, NY
+("I guess Im an information manager as well.")
+
+Adirondack Ecological Center - just lab/office (not forest experiment site itself)
+
+Hunnington Forest (HWF)
+Arbutus Lake Watershed
+not time-series prior to 1991. short-term work since 1940's.
+2004 major research instrumentation grant enabled purchases for realtime system
+Campbell Scientific
+radio Freewave 900 spread spectrum
+repeater on fire tower above forest
+130 ft walk-up tower with webcam and repeater
+lake has a tower and wells have towers
+radio communication to tall repeater, down to office, then to internet back to SUNY ESF.
+
+extensive website plotting data from all sites
+
+webcam looking at the lake.  part of phenology study.
+did not foresee how much the webcam gets website visit traffic.
+general public may not look at data but 50% traffic is camera.
+THey notice when not working.
+
+175 miles from campus, visit 1 to 2 times per month.
+
+biggest challenge: stuff is breaking and no funds.
+	lots of data now.
+	need better qa/qc
+	users requesting data; how much to give
+
+------------------------------
+2nd talk: Dave Hollinger - Howland Forest, Bartlett Forest and other sites
+
+part of AmeriFlux
+diff soluntions for diff sites
+Forest SErvice supports research at a subset of forests with tower sites, part of AmeriFlux network
+In addition to climate data, radiation, these sites also collect eddy flux data
+and 5 key sites measure trace gasses and trace CO2.
+Part of hphenology network.
+
+science questions
+	carbon flux
+	carbon storage, sequestration, partitioning, where it goes iwhtin the ecosystem.
+
+purpose
+	
+
+we have a lot of sensors taht are connected to a netowrk but I dont feel like we ahave a "sensor network"
+Developed as needd.
+Eddy flux began in 1996.
+	suddenly generated 8Mb/day or more.
+dev the network to inspect, backup, and archive the data.
+
+Howland - 4 separate towers, some up to 2 km away from central site.
+	these are "remote" sites.
+	4 hours away from office in Durham.
+	Visit several times per week.
+	need remote access to monitor how it is working.
+	
+in addition to conventional data loggers.
+Some have PCs that collect data.
+
+> 100 climate parameters collectd at 6 locations.  30 min averages.
+26 environmental parameters collected at 5Hz
+2 webcams
+
+parallel data systems at Howland
+	AERONET
+	COSMOS
+	Castnet
+	U COnn net
+
+have local ethernet
+rather than Campbell/radio we use 8021b wireless works great with line-of-sight.
+Wireless bridges on remote towers.
+soloar panels with deep batteries.
+Send data a few times per day, not continuous.
+9 dataloggers connected to net
+5 dataloggers not connected.
+webcams cost 1K$
+
+Synchronizatin clock
+
+biggest problem was connection btwn our system and internet.
+Wanted 2-way, not just sattelite
+1995 commercial StarBand system. 
+Now HughsNet, cell phone.
+
+1984 1 Kb/day
+1996 7Mb/day
+about 50 Mb/day now.
+
+where does all data come from?
+60% from webcam
+35% from soil trace gas
+5%
+all other 1% is met data
+
+send data back when sun up, a few times per day.
+
+Self-rebooting
+
+FLING for PC.  Looks at directory and if new files, it sends them via ftp.  Specify time interval or on-change.
+
+have not figured a use for "real" realtime.  30 minutes fine.
+
+TeamViewer - remotely access and remote desktop.  (previously ultraVNC)
+	TeamViewer also works on cell phone.
+	Remote PC access allows improve quality of data.
+
+some wireless, some stelite modem,
+some cable modem, some cellphone booter to USB modem.
+
+-------------------------
+3rd talk - Wil Wolheim - Ipswich River PIE
+
+NE Massechusetts
+Suburban Boston watershed.
+
+NEON relocatable site for New England will be here.
+
+channel floodplain region, sensors along stream
+
+nitrogen levels high N:Cl ratios
+then when wetlads come in, nitrate is cleaned out
+
+
+see pulses  of nitrate with storms
+
+salt from roads
+
+seacoast region of New Hampshire
+sensor suite. variety of in situ instruments measure every 1/2 hour.
+Turner Designs C6 Mlti-Sensor Platform,
+Satlantic Submersible UV nitrate analyszer
+CycleP
+
+cage of instruments.
+challenge how to deploy in low-flow and hi-flow periods.
+Not a long-term deployment.
+
+previously, monitoring was in snapshots.  Unexplained noise.  Hard to detect patterns.
+Deployed mid-April 2011, will leave in thru December.
+Sometimes nitrate and salinity are coupled, sometimes diverging
+
+Grab samples x-calib to in situ
+
+phosphate:  noise, re-analysis within the unit.
+	algorithm not correct apparently.
+	Noisey periods, negative values.
+
+CDOM
+
+NH EPSCOR
+	large project.  10M $ ecosys & society.
+	pairs of sensor sets around New Hampshire
+	understand land use and climate interactions
+	large river sensor sets
+	collab with HBR
+
+============================
+LTER Sites Examples
+============================
+
+Don Henshaw - AND LTER and Oregon
+
+Building the Cyber Forest; old way to new way
+
+Have to put data online within 2 years, mandated by NSF LTER
+Balance with correct before release, quality assure this data.
+High quality metadata. increasing requirements for metadata.
+Complexity of sensor networks, a lot fo things to track, changes of methods, calibration.
+Expectation for presenting these data.
+
+Site gets heavy wet snow.
+Snow-cat accessible only Nov-May
+Very remote
+
+moved toward modern sensor networks. complex topography so a lot of met stns to capture variablity accross the site.
+
+Stand alone rain gauge.  propane heater, snow fences.
+
+old way: thermograph bolted to tree.
+
+4 benchmark stations: 10m tower, snow pillow, solar, met suite. soil, stream.
+
+Streamflow began 1969: how clearcut affects flow regime.
+
+hydrologic data 7Million meas/year.
+
+1995 began to set up Campbell dataloggers, radio-equipped.  Licensed frequency radios.
+slow network.  enabled monitoring of forest during flood, remotely.
+
+hourly query of dataloggers. 
+for 10 sites the data is plotted to web.
+
+since 2002 began cyberwatershed 900MHz distant ridge 2-way radios
+for Barbara Bond's tower experiement.  Air/water dynamics in global change context.
+
+Snow hydrology sites.  Cold air pooling, cold air drainage connected to complex topography.
+
+Distributed temperature sensors every meter with light signal.
+Temperatures of snowpack.
+
+Webcam at main station for phenology and snowpack, also for roving classroom.
+
+Move ethernet out into the forest, higher bandwidth.
+Science drove this.
+
+900MHz is robust thru tall trees.
+
+Very remote towers, buit with helicopters. Solar panels and batteries.
+
+new 5.8GHz radios.
+
+Ultimately, will be able to see 80% of the forest, directable antennae.
+
+From old custom programs
+Quality assurance assumed a human would inspect, quick look and see a problem,
+to new programs to detect outliers.
+
+Bandwidth-hungry sensors
+
+want one system to accomodate all data
+Catalog the dataloggers
+Dynamically read the input
+problem keeping track of all this metadata, instrument information
+map into formats already online
+so imediately available,
+but with screening in-stream
+range-checking.
+Ethan has been working on that.
+
+Campbell data loggers to ascii file.
+INto normalized table.
+to final file.
+runs thru screening.
+prototype.  runs once per day.
+
+----------------------------------------------------
+JOhn Porter - Virginia Coast LTER
+
+Barrier Island (no trees)
+
+900MHz proprietary link
+all else wifi
+except 10 wells on Campbel something.
+new flux tower.
+
+what happens to the data once we've got it.
+
+slowest part of system is from lab to internet, T1.
+all else at least 3Mb/sec.
+
+data transferred to unix server where final graphics are done.
+
+After Irene hurricane could quickly see if sensors survived.
+
+new data -> range checks -> identify problems
+-> merge data
+duplicate checking eliminates dups
+integrated data -> analysis -> visualization
+
+since 1994
+
+lots f different tools.
+batch files
+sas
+unix shell scripts
+mixed together
+produces nice graphs 2 or 3 times per day
+comparative graphs btwn stations
+data tables on the web page
+
+downside: complex
+Kepler workflow system. 
+	example: generic quality assurance algorithm with R and Kepler that reads EML-described data
+	Does not matter what computing platform (PC, linux, mac)
+
+Areas of Improvement
+
+what we dont do well:
+
+Management of Sensors
+Sophisticated QA/QC
+Gap Filling
+
+used to use web form to report problems.
+CAnt get people to actually fill these in.
+Does nt actually link up to individual data observations.
+
+Draft Sensor Data Model
+projects have one or more node/station wich have one or more time-indexed deployments whch have
+multipel
+	sensors which measure one or more 	
+		parameters
+
+	deployments allow sensors to be reused
+	on multiple nodes at different times
+Events can be linked to Nodes,
+	deployments, Sensors and Parameters.
+
+e.g. deployment, calibration, failure
+
+ERD for tracking sensor events
+
+unless automated, will not get filled in.
+
+Improving Data
+	range checks - easy to find far outliers
+	can miss wrong but not far off
+	Redundant coverage can detect faults
+	To identify when broken: is 5 deg diff from avg of other stations, then look at
+
+	temporal comparisons at single stations (ie 25 deg change in one hour)
+	Baysian, Neural Network and Residual-based approches (dont even eed to know it is temperature data, more generic)
+		learning from the data itself what it should look like
+	
+	Way to incorporate QA, eg flags
+
+	Gap Filling (a huge issue)
+		some analyses sensitive to gaps
+
+-------------------------------
+Corinna Gries - NTL
+
+Considerations and technologies for building a bouy information system at NTL LTER
+
+Wisconsin.  2 distinct sites.  One close to Madison.  7 lakes far north Trout Lake Station.
+since early 1900s with 'fathers of limnology in US'
+
+LTER for 30 years began 1981
+first fully automated bouy went into the lake in 1998.
+Now 7 bouys in different lakes, plus one met station.
+20 sensors each.
+
+General meteorological parmeters,
+water parameters including Chlorophyll.
+RAdioed to station.
+
+Science questions determine which sensors go on bouy.
+
+sensors on bouys -> data loggers -> communication to station
+Middleware for data streaming
+system monitoring tools
+database
+data access tools.
+
+Considerations:
+	reliability in field (even tho not remote)
+	provide access to data for site researchers
+	metadata
+	funding and collaborations
+	functionality provided by netowrks
+		leveraging efforts, contributing efforets
+	user and developer base - sustainable software
+	flexibility  standards implementation
+	ease of implementation
+
+LTER
+GLEON
+CUASHI
+	
+different standards. want to leverage.
+
+cant run under 1 gran 4 years then drop all for next grant
+
+Trying to be extreamly standards compliant.
+Want to be modular - to plug in and out parts
+
+data streaming middleware
+Ziggy vs DataTurbine
+
+Ziggy is custom, built for this situation.
+	reliable.
+	parses into one data model (Vega)
+
+DataTurbine
+	reliability is an afterthought.  Reliable EXCEPT for power outage
+	variable inputs
+	parses into 2 basic data models (matrix and parameter value)
+	Provides real time data stream monitr (RDV)
+
+compare data models
+had NTL data model
+	matrix type table
+	one column per parameter
+	well described in EML
+	no controlled vocab
+
+GLEON Vega
+	parameter-value style
+	metadata assoc with each data series or stream
+	controlled vocabulary for paramters
+	can move sensors around, turn on/of
+
+CUAHSI
+	ODM
+	(hear later)
+
+Data Access:
+	was running extreamly well for NTL and public
+	based on EML
+	automated, can plug in tables and tehy come online automatically
+	clunky but need to keep going
+
+DBbadger, Vader
+	tightly integrated with VEGA
+	
+
+Hddryo Desktop, HydroExcel
+	
+Kepler
+
+(more later on those)
+
+bouys -> towers -> DAtaTurbine -> RDV and storage
+
+experimentatin with Kepler.
+	has data turbine actor
+	imediately exposes all data streams
+	if many channels, hard to see which one.
+
+same data goes into both NL-LER system and also into GLEON system.
+
+database triggers are doing range checks.
+goes into matrix style database.
+	custom online query.
+
+-----------------------------------
+
+break. 10:40 now.
+-----------------------------------
+
+Federal Programs
+both in development phase
+
+NEON - Jeff Taylor
+
+	still developming data protocols
+	want to remain compatible and consistent with USFS, LTER
+
+	data acquisition
+
+in fundamental instrument group
+
+Jeff is qaqc data analysis guy.  14,000 sensors to manage.
+
+Capabilities based networks
+vs
+Requirements based infrastructure
+	(gaudy complex cake)
+
+Exploratory open-ended science, PI-driven (pankakes)
+
+vs
+
+Enables PI reseach, adv tech
+Production environments.  no time for science themselves but enable science
+
+pancakes: LTER, AmeriFlux, Fluxnet, BASEIN, CZO
+
+elaborate cake: NSF Observatories, DOE ARM, ...
+
+NEON has 7 grand challenges
+	1. biodiversity
+	2. biogeochemical cylles
+	3. climate change
+	4. eco hydrology
+	5. infec dis
+	6. invasive species
+	7. land use
+
+Implmentation difference
+
+start with grand challenges
+then usabel information/data products identified
+then science requirements
+then engineering and CI to do that.
+
+versus begining with instruments "bottom up"
+
+I DISAGREE.  LTER does nt begin with instruments!!!
+
+
+NEON will provide infrastructure: CI, data, curation
+	physical: towers, aquatic sites, aircraft
+	outreach assistance
+
+The way scientists get involved is not yet defined.
+
+Eco Domains, 20 accross US
+each domain has a core site.
+
+Core site 20 is Pacific Tropical, in Hawaii
+
+These sites will stay fixed 5-10 years.
+
+Each site has a tower and an aquatic site.
+
+3 aircraft twin otter. 
+	Lidar
+	Hyperspectral imager
+	Camera
+will connect the dots
+
+1 plane reserved for target of opportunity for specific event,
+	hurricane
+	oil spill
+10 mobile deployment (tower on wheels)
+	1 AK
+	1 HI
+	8 elsewhere
+
+Timeline
+	began discussion late 1990s
+	workshops in 2000's
+	2006 original science & edu plan.  FIrst 1 hire
+	2007 prelim review indicated redesign
+	2008 site design contracts, staffing up t 50
+	2009 prelim design review, final design review (60K pages, 3K slides)
+	2010 buisness operations; staff 135
+	2011 August began construction; 170 staff
+
+construction will last 5 years. 140Mill.
+	operations phased in during construction.
+	84 Mill requestd for next year.
+	Could get stretched to 6 years.
+
+Science in 5 groups
+	FSU - fundamental Sentinel Unit - human obs of FLORA  fauna
+	FIU - fund instrument unit - automated sensors; atm, met, soil
+	AOP - Airborne obs pkg	- ac remote sensing
+	AQU - Aquatic/STREON - human obs / auto instru
+	LUAP - Land Use analysis Pkg - Satellite Remote SEning +
+
+HQ in Boulder
+
+36 Aquatic sites plus 10 sites will be STREON nutrient experiment sites
+
+Huge data streams
+	will distill int 584 standard Level-1 data products
+	combined to 117 Level-4 continental-scale products
+
+Bioarchive 130K samples per year (species and substrates)
+
+Experiments
+	externally funded experiments using NEON infrastructure
+
+Towers
+	set of full time technicans on-site.
+	2000 measurements per core site.
+	1/day to 20Hz sample frequency
+	
+Soil Array perpendicular to tower 40 to 200m out in 5 plots
+
+	
+Designed to be non-disruptive to site.  No permanent change.
+
+Campaign-based truck & trailer.
+
+Key NEON Data
+L0 - raw data, millivolts
+L1 - calibraed, ie Celcius
+L2...
+
+more tomorrow.
+
+---------------------------------
+CUAHSI - Rick Hooper
+
+Universities allied for water research
+
+Data Flow
+
+data loggers, sensors data travels to the office database
+sample data goes to lab thene ventually into a db
+loca l team needs to QC/QA it
+then out to the world
+
+heterogenous sw environment
+
+CUAHSI focusese on how to get the data out to the world
+
+manufacturers propritary sw for loggers
+issues particular to your own field site
+Lab Info Mgmt System = LIMS
+
+remote scientists need access to data
+
+				
+HIS
+
+a lot of field sites
+fundamental challenge
+customization to each site
+everyone struggling with same problem, reinventing wheel
+
+automation of qa/qc
+data access with privledge
+data mgmt
+particular field-lab setup
+
+community based solutions
+Observations Data Model - ODM
+streaming data sw in microsoft sql (SQL-Server?) (not oracle, MySQL)
+will have a data center to serve community
+
+CUAHSI is for fixed-point, taking time-series from
+have EML for less-structured data, versus grid-based for RS
+	waterML adopted by USGS
+standards provide interface to outside world
+
+clearinghouse forum to share tools and techniques
+
+NSF looks as separate problems
+
+want to participate with LTER NIS (?)
+
+Training
+	get LTER experience out more widely
+
+Commercial software
+	some of these problems have been solved in commercial world
+	BES is using Kisters Software, commercial.  Higly customizable.
+		used by governments for data management
+	Edu discount?
+
+Each research group should have a sophisticated data manager like LTER has.
+
+NSF now requires more sophisticated data management system.
+
+CUASHI is grassroots.
+
+WaterML 
+
+75 to 78 public services now.
+Fixed point time series.
+maintained at San Diego Supercomputer Center
+
+sites have variables which have values
+
+uses WSDL
+
+HydroDesktop - desktop HIS
+	search catalog for data sources
+	where/when/what
+	data might be coming from usgs, other sources
+
+Data SERviees,
+	metadta
+	data
+
+WaterML now 2.0 now OGC standard.
+
+aggregates diverse sources into one system
+
+ESRI 
+
+Web SErvices HUB
+
+integrates modeling, mapping, data services (WFS)
+
+Uniform interface to outside world
+
+data centers pass their catalog into this.
+on the fly, standards-based is future aim.
+
+once compiled and pulled together, can we save that?
+scientist constructs a dataset for a purpose.
+should re-publish that, with a workflow and provenance.
+example: HCDN gauges in North America with minimal human impact
+	someone has done a certain type of QA.
+	should be re-published.
+
+Publishers need to think about data publishing.
+	Not like article on a shelf.
+
+Can download data usage reports for reporting purposes.
+
+These data have a lot of structure in them.
+EML can describe much more diverse datasets.
+CUAHSI has easier problem: consisten type of data.
+WaterML is set up for sensors.
+As move from aquatic chemistry to solid phase, analysis becomes more complex.
+Sensitive to metadata concerns when do analytical stuff.
+
+-------------------------------
+Pete Murdoch - USGS and multi-agency collaboration
+
+discuss barriers and opprotunities next.
+
+"Networking the Networks"
+
+common metadata standards
+	pull your own data into common database
+
+may alter data colectin protocols - dont want to for time series
+	data comparability screening
+	link historical databases
+
+adding measurements
+	to bulid coherent programs
+
+time commitment to collaborate with other montoring programs to do the QA
+
+A lot of monitoring programs provide the "raw materials"
+	need to answer ecosystem level programs - a challenge.  still cant do this.
+
+Lots of data out there to work with.  Large stream gauging network
+
+Historic records.
+	Have lost a lot of monitoring sites.
+
+Separate
+Dying of attrition
+
+no coherent message to decision makers as to why monitoring is needed.
+
+DOI Enterprise System
+	dept of interior
+	partnership between data modelers
+	enterprise service bus
+	shelfed in April 2011 because have new congress; "Climate" in title
+
+climate change requires interdisciplinary work
+
+NEON and CUAHSI and arctic observing program are only ones not facing funding cuts.
+	and CLimate Science Centers at universities.
+
+Learned Lessons 
+
+Sensor Networks is a critical gap.
+
+co-location with existing long-term monitoring stations.
+	need whole-system understanding
+	superimposed signal
+	
+Must make all or most data QA'd and accessible.
+
+Hydrologic Benchmark Network
+	almost 50-year record
+	reduced number of sites
+	want to co-locate with terrestrial sampling
+
+Integrate the integration Efforts
+
+--------------------------------------------------
+	DISCUSSION:  Barriers and Opportunities
+--------------------------------------------------
+
+Inigo -
+	accross fed agencies
+	data standards
+	funded positions to netwk btwn agencies, decision-making ability, to make collab happen
+	need funding to make it happen
+	isnt funding the impediment
+
+Pete - 
+	disparate standards is the barrier
+	liason btwn agencies was going on.  Was Pete's job.
+	problem was... all separate
+	everybody was leading.  Not part of the whole.  Slices of pie.
+	Competed instead of working together.
+
+Rick - 
+	data sharing easier now than ever before
+	resource managers have long list of requiements
+	data.gov now
+	how we make progress with WaterML - asked gov to d for them
+	Standard of WaterML emerged because asked each agency separately.
+	To get monitoring networks stabilized, we have to interpret the data for them.
+	Demonstrate the value of the data, in $.
+
+Pete -
+	have worked backwards from Policy Questins, to science questions to give good advice.
+	
+Lindsey -
+	exactly the way to go about it.
+	Did you get the 2-way flow of policy-relevant information?
+	
+Pete -
+	2 new things in DOI
+	Landscape cooperatives
+	Bridge btwn scientists and resource managers.
+	22 enclaves of science, not forming relationship well
+	8 science centers are for reserach and modeling
+	what we really need is to link our long-term monitoring to our research.
+	North East should ask what policy will sensor networks inform?
+
+	We (USGS) never had enough data for a proof-of-concept.  Now do in Yukon River Basin.  Takes awhile.
+	Bridging cultures, not just bridging agencies.
+
+Bill Brandon -
+	goals?
+
+Pete -
+	Water is an integrator of system.
+	in situ sensors
+	first 3 years methods development
+	what do we need t know about permafrost; most cost effective way to monitor
+	where is the C going?
+	Policy questions: how do you sustain indigenous villages as hunting grounds change?
+	Science questions to recomend policy
+	Began building science from there.
+	Discovered some new methods, such as how to map permafrost.
+	Determined whether carbon was going into ocean or into air.
+	Permafrost carbon issue dwarfs other sources.
+	wanted to leave behind (in place) a legacy montioring there.
+	Intensive work in watersheds around US. 3-5 years.
+	Like NEON
+	USGS was working with Dave Shimel.
+
+Jeff -
+	Took 10 years of meetings for NEON to get off the ground.
+	
+
+Pete -
+	big broad questions that affect society wont take 10 years.
+	If dont have such questions, hard to justify.
+
+Rick -
+	Each group has their science justification.
+	This workshop is about details of how we deploy, use and validate these sensor data streams?
+
+Lindsey -
+	We are drilling down to what are the barriers.
+	Know-how, technology, money?  Institutional challenges?
+	What do we need to move forward?
+	
+Rick -
+	barrier to broad adoption
+	work great in lab but need robust in hostile field setting
+	
+Corinna -
+	all those plus
+	funding model. apply for funding have to come up with new idea.
+	We dont need new idea, or research.  We need products that work outside the lab.
+	
+Pete -
+	What is the knowledge and software for managing these probes?
+	We (USGS) learned specialized knowledge in Yukon for -30 degree field usage.
+
+John Porter -
+	Proliferation of standards.
+	Difference between data with undefined structure versus understood structure.
+	Convert EML data to WaterML data; critical "glue points" to translate over the value-parameter points.
+	
+Wade -
+	site specific approaches to get it working
+	ripe for tool-sharing consortium
+	CUAHSI data models and services layers is important step to concentrate effort
+	Complexity is increasing in small local site problem solving
+	Next: fit into models such as CUASHI for 20% of our site data
+	fit into different model for X%
+	The ideosyncratic lab files to describe in EML for end users to deal with
+	Problem is step up to look at community level standards for QC codes to soften the barriers 
+
+CUASHI guy -
+	gridded world for Atmospheric Scientists 
+	hydrologists want the transpose, one site in time
+	NetCDF
+	End Users should not be exposed to all that stuff
+	Do that translation, make the tools that translate behind scene to present data in form community expects to see.
+	
+Wade -
+	Make them interoperable.
+	not build new stovepipes or layers of complexity that data managers have to deal with.
+
+CUASHI -
+	need translation step to deliver data to scientists.
+
+JohnP -
+	focus on interfaces between them.
+	done force peoeple to be familiar with enteir sw stack
+	need common interface
+	connecting the stovepipes together
+
+***
+
+? -
+	long term trends, reliability
+	struggle with data quality assurance
+	over long term, sensors come and go, drift
+	some programs such as climate referenc enetwork, thei field check their results
+	water quality, radiatin sensors, sonic annonometers supposed to give same values (cross-calib btwn instruments)
+	spurious shifts
+	changes in gains
+	how d you identifiy those to produce long-term stable record?
+	
+	
+CUAHSI -
+	NEON has resources to focus on that
+	problem as try to integrate academic data
+	NSF is not paying to do that part of the work
+
+? -
+	Some aquatic sensors are new and not sure what they are telling us yet.
+	PI would not be comforatble sharing the data until compare to lab samples.
+
+Pete -
+	vocabulary to label the data as "provisional", noting concerns
+	We have resource managers who need to know the flood response 30 seconds ago.
+
+Don H -
+	homogenized dataset over time, take 8 sites in forest, Tmax, Tmin, built common record
+	to compare against our record and compare t regional model.
+	Able to identify where breaks in the record: 1.3 degree difference.  What changed there?
+	Found changes in instruments, or location.
+	Knowing these metadata will be key to build better time series.
+
+John P -
+	we do not yet have good tools for doing that tracking.
+
+Pete -
+	we do that in the lab.  We run instruments in parallel for awhile before swapping out.
+	
+
+NEON guy -
+	we have funding on grand scale so we are in a position to do this.
+
+Astrophysicist -
+	Topics here in QA pipeline.  Astrophy have struggled with this for 20 years.  Same steps.
+	X-ray observatory worked there 30 years. 1/3 to 1/2 expeditures on a satellite are for QA, calibration.
+	You can go back in time and have the dataset reprocessed with the latest recalibration.
+	When you receive your data, you get the whole history.
+	Cross-calibration is done with a lot of other observatories.
+	We are getting now to looking at who is using our data.
+	More data synthesis now.  Cannot expect other disciplines to learn each other's systems.
+	How are you going to integrate all these products in a way that does not require expertise.
+	XML metadata is essential.
+	Have to have a filter to get your data up to the rest of the world, no matter your local site system.
+
+Lindsey -
+	One barrier is a cultural change.
+	Focus on Information Mangement.
+	In forest service we do a lot well, but to ask for more $ for IM, not happening.  Not in our culture.
+	So to learn the astrophysisics spend 50% ...
+	a trade off.  need $ to collect the data.
+
+Astro -
+	In 5 years I want to know what the processing, errors, uncertainty are for some data.
+
+? -
+	Every measurement comes with an uncertainty.  Need to build in that information.
+
+Pete -
+	a parallel database where can link each sample to its QA.
+
+John P -
+	would love to have that info in perpetuity.
+	But a lot of data wont have that.
+	So need methods to assure homogeneity of data, to help us flag. 
+	A tracking and analysis, look at decision points what to include, run the analysis with a Monte Carlo with diferent approacehes to see how robust that anaylysis result is.
+	Agree the best is to have that calib data.
+	Second best is a data-based uncertainty analysis.
+
+? -
+	you know your own data.
+	but data users, they just want the best data and would not know how to evaluate it themseves.
+
+Astro -
+	Virtual observatory.
+	Overlay data with GIS.
+	People grab data w/o knowing what they are doing.
+	Have to understand what they grabbed, their processes.
+	4 document process:
+		science req, 
+		impementation plan, 
+		V&V verif and validation doc, 
+		users guide
+	Those 4 are required
+	Decadal surveys drive everything
+		frequency of measurements justtified
+
+CUAHSI -
+	Cultural shift
+	Learning by doing.  Will have bad papers published, then figure it out.
+	Expecting to use data off web from others.
+	Drives expectation for data documentation.
+	
+? -
+	differences in data from large-funded teams that can do that
+	versus
+	FLUX community.  variety of ecosystems.  no overall consistency in checks on those data.
+	unified datasets in same form. 
+	studens throught world use these data but they have no idea of quality of these data
+	discovering spurious results in the data
+	Low funding at those sites.  Completed, not ongoing.
+
+Pete -
+	part of objective:  sw pkg to manage data so each prof could use sw
+	
+
+? -
+	work toward R approach in statistics.
+	Devel in teams of users throught the world
+	R has a future.  Not company going out of buisness.
+	Do something like R for this kind of problem.
+
+Lindsey -
+	Next will focus more on science aspects.
+	Tech driving science - sicence driving tech
+	have to put under politically relevant science
+	To bet there, need to have confidence in the science from our network.

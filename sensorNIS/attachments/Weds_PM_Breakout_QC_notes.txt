@@ -1,0 +1,295 @@
+Weds PM Breakout:  Qc
+---------------------------
+NEON Checks:
+	range min/max
+	variance too high/low
+	spikes (dif btwn pairs too big)
+	step (stuck at one value)
+	missing data - large gap
+	insufficient data (too few hourly for day aggregate)
+--------------
+Range
+--------------
+	Seasonal vs Annual approach
+	What is scope of range? Manuf specs.
+	versus Natural range of measurement (negative mass)
+	Use prior knowledge of system
+		or historic values (window size)
+	Purpose - find sensor malfunction
+		Dangerous to limit to historic; miss unusual event
+	Qualifier can mean need to examine
+	False alarm tolerance
+	QC vs Event Detection
+	Need to clarify purpose of QC
+		bad sensor values
+		identify events to examine
+
+	Range check may be seasonal
+	Different flag codes for different range bounds
+		impossible vs examine
+		some remove; some mark as questionable
+	Dont remove extreme events from data; just flag.
+
+	Depends on volume of data needing to be QC-ed.
+		pre-select different-pattern data
+		borders on event detection
+
+	Outliers may be valid points.
+		Can further tag as validated.
+
+	Some parameters have strange distributions
+		example: hurricane barometric pressure
+
+	Quality flags are both for data mgmt and also for end users
+		May need diff sets of flag codes.
+		Removed or converted to quality flags.
+		"Provisional flags"
+		"Final Data Flags: reject/suspicious/acceptable"
+	
+	End data users want to rely on expert judgement.
+
+	Near-real-time data should be flagged if provisional, even if do not know cause yet.
+		ex:
+			outside range of instrument
+			exceeds seasonal range
+
+		suspicious vs impossible
+		labels indicating possible meaning
+-----------------
+Variance
+-----------------
+	
+	Too much vs too little variance
+	Check variance of one sensor vs set of sensors
+	Depends on frequency of sampling
+
+-----------------
+Spikes
+-----------------
+	Transient problem
+
+Steps & Spikes
+	Sensitive to how much data looking at, and backward-looking
+	Values 5x a previous value, ie turbidity
+	Qualitatively visible in graphs
+		Sensor problem appears as plateaus, steps
+	Phase transitions
+	How to detect when problem starts, ends
+		same-value over time period, may flag
+
+	Instrument swap can make a step in values
+		indicates old sensor drifted
+
+	Level-1 flagging usually automated, practical need
+
+Dont elimiate; identify.
+
+Chemistry:  non-detects. Not no value; is information.
+	Microbursts in rain events
+
+Save raw data exactly as-is.
+First released version should not have -999's?
+	Define the meaning of flag.
+
+Define Levels.
+	Level-0 millivolts, not even calib to SI units
+	Level-1 includes QC up to gap filling
+	Level-2 filled in time or rectified in space
+	Level-3 are derived data
+	Level-4 data products at continental scale
+
+GCE Level-0 is already calibrated.
+	
+Description/definition of what QC done 
+	defined by scientists closest to data domain
+	described for users farther for data domain
+
+Sufficient transparencies of these protocols
+	who interpreted
+	review and fedback as part of data cycle, 
+	to add information to be used for judgement, to interpret
+
+	Capture QC procedure in script to fully document 
+	Context for criteria
+
+	example: EPA Storet system 
+	defined conditions for all sorts of data
+
+	example: the "Afterschool Effect"
+	or the "Shootout Effect"
+
+CUAHSI Data Levels
+	Level-0 only one. Any derived from that are still level-0.
+	Level-1 described similar to NEON
+		passed procedures, inspection, error removal
+	Level-2 built from Level-1
+	ODM stores data with its level and flag(s)
+
+Define the scope within which a given Level is defined.
+
+Drift - only way is in situ parallel measurement,
+	with post-hoc analysis.  Redundant sensors.
+	Step function upon instrument swap.
+	Where do you flag back to as drift began?
+
+	Water samples' lab analysis compared to in situ sensor value.
+	
+	Different technologies drift at different rates.
+	Compare in time.
+
+	Drift is a complex issue, difficult to solve automatically.
+
+Spike detection
+	Can be done
+
+Of the NEON suite of QC, recommend the 'should' or 'shall'
+
+Level-0 raw data - nothing is removed
+Level-1 not-recorded flags can get mistakenly included in calculations
+		substitute a NaN or NULL for -999
+		
+		
+Related measurements should agree
+	Basic rules like Tmax > Tmin "must" where applicable
+	
+range checks are "should"
+	vary with domain.  ie Turbidity challenging
+
+domain of legit values is a "must" if known,
+	such as precipitation has no upper bound
+	lower bound on mass
+	Seasonal/Contextual range is a "should"
+
+spikes - in most sensors, transient spikes indicate problem
+	"should" label for inspection 
+
+Exceptions for some sensors
+
+Repository for calculations.  Sites could use same.
+
+Calibration results, usually post-hoc.
+	If too long since last calibration, flag.
+	Overdue for recalibration can be flagged realtime.
+	Flag until later verified.
+	Not a "must".
+	Nice if metadata chip sends info with data, when last calib.
+	
+
+Time synchronization
+	Time-shift, out of sync clock.
+	Large sensor systems have infrastructure for this.
+	Hard to capture realtime.
+	Flag suspicious time values if unable to connect to time server
+	ESPER and DataTurbine will reject data points after a false-future data point.
+	Look for validity of timestamp.
+	
+Duplication
+	identify duplicate timestamps for same value
+	
+Tag times of maintenance even if values are within range.
+	"should" record site visits.
+	Oceanography has concept of an Event. Type into keypad.
+	Un-evenness of timestamps "should" check
+
+
+Dependent measurements
+	If temperature is bad, then conductivity is bad.
+	Depends on instrument; sensor may calc for you.
+	"shall" check dependent measurements
+
+Cross-sensor checks
+
+stuck-constant value is a step.
+
+Set range based on historic range is a "should".
+
+After automated data checks, still provisional data.
+Level-1, some QC applied.
+	L-1 provisional
+	L-1 published
+
+Level-2 is gap-filled and geo-rectified
+	assumptions, dependencies
+
+streamflow is a cumulative total
+rainfall is a cumulative total
+	daily, weekly, monthly, annual total
+	Can fill gap with easy approach, using other sites
+	Flag with E as estimated
+	
+Generic problem list of tags
+
+reporting on completeness is not filling gaps.
+
+Who is responsible for gap-filling and what is appropriate method?
+
+CUAHSI would say hourly aggregate values are Level-2.
+
+-----------------------------
+	Data Qualifiers
+-----------------------------
+
+There exist controlled vocabularies of data qualifiers already.
+Should there be a minimum generic set?
+List of generic problems (ie raingauge overflowed)
+
+Different qualifiers for procesing steps.
+Granularity, scope what codes are for.
+
+Rich vocab of flags for Level-1 data review.
+Simpler set of flags for higher-level reviewed data.
+
+Provisional flags - for data managers
+Published flags - 
+
+NERR Nation Esturarine Research Researves (NOAA)
+	used at GCE
+	used at HRECOS
+
+Is one flag enough?
+	if have timestep problem, could have value problem.
+	
+Should support multiple flags per value.
+
+----------------------------------
+	Data Documentation 
+----------------------------------
+
+include documentation right in the data? aside from code
+Flag breaks in method along time series?
+Sensor issues, swapping
+Recommend include as data column a sensor id or method code
+"record level metadata"
+not just a qualifier; something to filter on.
+
+comment column for "see metadata"
+	unique information
+
+should complexity be sheltered from some user groups?
+
+Data Levels definitions
+	Document what levels are
+ 	Clarify what is meant by processing level should be in your QC documentation
+
+
+------------------------------------------------
+	Action Items
+------------------------------------------------
+
+crowd-sourceing comment forum to review BP recommendations
+Narrow down a list
+Gather when did/didnt work - known problems, caveats
+
+* Decide/develop flagging criteria, tiers
+Action: gather existing controlled vocabs for qualifier flags
+	Tie to a data use
+
+* 
+Action: make a wiki or list, place to gather info
+	crowd-sourceing comment forum to review BP recommendations
+	Narrow down a list
+	Gather when did/didnt work - known problems, caveats
+
+
+
+
